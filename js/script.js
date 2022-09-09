@@ -5,6 +5,7 @@ const pipe = document.querySelector('.pipe');
 
 // função para pular
 const jump = () => {
+    // teste commit
     mario.classList.add('jump');
     setTimeout(() => {
         // remove a classe jump
