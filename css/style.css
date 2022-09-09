@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-board {
+    width: 80%;
+    height: 500px;
+    border: 1px solid #333;
+    margin: 0 auto;
+    position: relative; /* faz com que qualquer objeto nao ultrapasse a barreira limite */
+    overflow: hidden; /* caso algum objeto utrapasse a barreira, ele será escondido */
+}
+
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    /*chama a animaçao criada ou ja existente*/
+    animation:
+            pipe-animation /* executa a animção que faz ir da posição rigth 0 até rigth 100% */
+            2s /* define o tempo de execução da animação */
+            infinite /* faz com que a animação seja executada em modo infinito */
+            linear; /* deixa a animação sendo executada sem delay de inicialização ou delay no final da animação */
+}
+
+.mario {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+}
+
+/* executa na class jump a animação do mario de pular */
+.jump {
+    animation: jump-animation 500ms ease-out; /* ease-out faz com que a queda do pulo seja mais suave */
+}
+
+/*cria uma animação fazendo com um objeso saia da posição rigth 0 e vá ao seu 100%*/
+@keyframes pipe-animation {
+    /* define o inicio da animação */
+    from {
+        right: -80px;
+    }
+
+    /* seta o final da animação */
+    to {
+        right: 100%;
+    }
+}
+
+/* realiza as etapas do pulo do mario */
+@keyframes jump-animation {
+    /* que seja iniciado com bottom 0 */
+    0% {
+        bottom: 0;
+    }
+
+    /* quando chega no 40% da animação do mario, mantenha  180px*/
+    40% {
+        bottom: 180px;
+    }
+
+    /* quando chega no 50% da animação do mario, mantenha  180px*/
+    50% {
+        bottom: 180px;
+    }
+
+    /* quando chega no 60% da animação do mario, mantenha  180px*/
+    60% {
+        bottom: 180px;
+    }
+
+    /* quando chega no 100% da animação do mario, volte para a etapada inicial bottom 0*/
+    100% {
+        bottom: 0;
+    }
+}
