@@ -7,10 +7,25 @@
 .game-board {
     width: 80%;
     height: 500px;
-    border: 1px solid #333;
+    border-bottom: 15px solid rgba(12, 175, 35, 0.96);
     margin: 0 auto;
     position: relative; /* faz com que qualquer objeto nao ultrapasse a barreira limite */
     overflow: hidden; /* caso algum objeto utrapasse a barreira, ele será escondido */
+    background: linear-gradient(rgb(72, 167, 215), rgb(255, 255, 255));
+}
+
+.score {
+    position: absolute;
+    right: 50%;
+    top: 200px;
+    transform: translate(50%, -50%);
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 0 0 10px #000;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .pipe {
@@ -20,9 +35,16 @@
     /*chama a animaçao criada ou ja existente*/
     animation:
             pipe-animation /* executa a animção que faz ir da posição rigth 0 até rigth 100% */
-            2s /* define o tempo de execução da animação */
+            1.5s /* define o tempo de execução da animação */
             infinite /* faz com que a animação seja executada em modo infinito */
             linear; /* deixa a animação sendo executada sem delay de inicialização ou delay no final da animação */
+}
+
+.clouds {
+    position: absolute;
+    width: 25%;
+    top: 20px;
+    animation: clouds-animation 10s infinite linear;
 }
 
 .mario {
@@ -44,6 +66,16 @@
     }
 
     /* seta o final da animação */
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes clouds-animation {
+    from {
+        right: -40%;
+    }
+
     to {
         right: 100%;
     }
