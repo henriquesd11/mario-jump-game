@@ -19,10 +19,28 @@ const jump = () => {
     }, 500); // 500 milisegundos mesmo tempo que a animação do mario pulando é executada
 }
 
+const modifySpeedPipe = (score) => {
+    if (score >= 500 && score <= 1000) {
+        console.log('chegou no score entre 500 e 1000');
+        pipe.style.animation = 'pipe-animation 1s infinite linear';
+    }
+
+    if (score > 1000 && score <= 2500) {
+        console.log('chegou no score entre 1000 e 2500');
+        pipe.style.animation = 'pipe-animation 0.8s infinite linear';
+    }
+
+    if (score > 2500) {
+        console.log('chegou no score 2500');
+        pipe.style.animation = 'pipe-animation 0.5s infinite linear';
+    }
+}
+
 // cria um loop infinito para verificar se o mario colidiu com o pipe
 const loop = setInterval(() => {
     let valueScore = parseInt(score.innerHTML);
     score.innerHTML = valueScore + 1;
+    modifySpeedPipe(valueScore);
     const pipePosition = pipe.offsetLeft;
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
     const cloudsPosition = +window.getComputedStyle(cloud).left.replace('px', '');
@@ -51,7 +69,7 @@ const loop = setInterval(() => {
 
 // executa o evento de pulo quando o usuário aperta qualquer tecla
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'w' || event.key === 'ArrowUp') {
+    if (event.key === 'w' || event.key === 'ArrowUp' || event.code === 'Space') {
         jump();
     }
 });
